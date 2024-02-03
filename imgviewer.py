@@ -13,14 +13,13 @@ def forward():
         
     imagedisplay.grid_forget()
     imgno += 1
-    imagedisplay = Label(image=final_imgs[imgno])
+    imagedisplay = Label(image=final_imgs[imgno],padx=10,pady=10)
     button_back = Button(root, text="<<",command=previous,font="helvetica")
     button_forward = Button(root, text=">>",command=forward,font="helvetica")
     status = Label(root, text= "Image "+str(imgno+1)+" of "+str(len(final_imgs)))
     
     if imgno == len(final_imgs) - 1:
         button_forward = Button(root, text=">>",state = DISABLED)
-    
     
     imagedisplay.grid(row=0,column=0,columnspan=3)
     status.grid(row=2,column=1)
@@ -32,14 +31,13 @@ def previous():
     global imagedisplay, button_back,button_forward, imgno,button_forward,button_back,button_quit,status
     imagedisplay.grid_forget()
     imgno -= 1
-    imagedisplay = Label(image=final_imgs[imgno])
+    imagedisplay = Label(image=final_imgs[imgno],padx=10,pady=10)
     button_back = Button(root, text="<<",command=previous,font="helvetica")
     button_forward = Button(root, text=">>",command=forward,font="helvetica")
     status = Label(root, text= "Image "+str(imgno+1)+" of "+str(len(final_imgs)))
     
     if imgno == 0:
         button_back = Button(root, text="<<",state = DISABLED)
-    
     
     imagedisplay.grid(row=0,column=0,columnspan=3)
     status.grid(row=2,column=1)
@@ -76,7 +74,7 @@ final_imgs = [my_img1, my_img2, my_img3, my_img4]
 
 status = Label(root, text= "Image "+str(imgno+1)+" of "+str(len(final_imgs)))
 imagedisplay = Label(image=final_imgs[imgno])
-imagedisplay.grid(row=0,column=0,columnspan=3)
+imagedisplay.grid(row=0,column=0,columnspan=3,padx=10,pady=10)
 
 button_back = Button(root, text="<<",command=previous,state=DISABLED,font="helvetica")
 button_quit = Button(root, text="Exit",command=root.quit,font="helvetica")
