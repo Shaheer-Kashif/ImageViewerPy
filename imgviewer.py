@@ -47,11 +47,12 @@ def previous():
     button_forward.grid(row=0,column=2)
     status.grid(row=1,column=1)
 
-img1 = Image.open("images/1.png")
-img2 = Image.open("images/2.png")
-img3 = Image.open("images/3.png")
-img4 = Image.open("images/4.png")
-imgs = [img1,img2,img3,img4]
+img1 = Image.open("images/1.jpg")
+img2 = Image.open("images/2.jpg")
+img3 = Image.open("images/3.jpg")
+img4 = Image.open("images/4.jpg")
+img5 = Image.open("images/5.jpg")
+imgs = [img1,img2,img3,img4,img5]
 resized_imgs = list()
 
 #image resizing
@@ -73,7 +74,8 @@ my_img1 = ImageTk.PhotoImage(resized_imgs[0])
 my_img2 = ImageTk.PhotoImage(resized_imgs[1])
 my_img3 = ImageTk.PhotoImage(resized_imgs[2])
 my_img4 = ImageTk.PhotoImage(resized_imgs[3])
-final_imgs = [my_img1, my_img2, my_img3, my_img4]
+my_img5 = ImageTk.PhotoImage(resized_imgs[4])
+final_imgs = [my_img1, my_img2, my_img3, my_img4,my_img5]
 
 frame = Frame(root, width=1920, height=1080,bg="#303030",padx=20,pady=20)
 frame.pack()
