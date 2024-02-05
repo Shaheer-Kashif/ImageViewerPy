@@ -25,7 +25,7 @@ def forward():
         button_forward = Button(frame2, text=">>",command= forward,font = fontscript,bg="#0078c2",fg="white")
     status = Label(frame2, text= "Image "+str(imgno+1)+" of "+str(len(final_imgs)),font=fontscript2,bg="#303030",fg="white")
     
-    imagedisplay.pack(padx=10,pady=10)
+    imagedisplay.pack(expand=True,padx=10,pady=10)
     button_back.grid(row=0,column=0)
     button_forward.grid(row=0,column=2)
     status.grid(row=1,column=1)
@@ -44,7 +44,7 @@ def previous():
     else:
         button_back = Button(frame2, text="<<",command=previous,font = fontscript,bg="#0078c2",fg="white")
     
-    imagedisplay.pack(padx=10,pady=10)
+    imagedisplay.pack(expand=True,padx=10,pady=10)
     button_back.grid(row=0,column=0)
     button_forward.grid(row=0,column=2)
     status.grid(row=1,column=1)
@@ -78,15 +78,17 @@ for i in resized_imgs:
     my_img = ImageTk.PhotoImage(i)
     final_imgs.append(my_img)
 
-frame = Frame(root, width=1920, height=1080,bg="#303030",padx=20,pady=20)
-frame.pack()
+#Frame 1 Holding Image
+frame = Frame(root, width=700, height=500,bg="#303030",padx=20,pady=20)
+frame.pack(expand=True)
+frame.pack_propagate(False)
 
-frame2 = Frame(root, width=1000, height=200,bg="#303030")
+imagedisplay = Label(frame,image=final_imgs[imgno],justify="center")
+imagedisplay.pack(expand=True,padx=10,pady=10)
+
+#Frame 2 Consisting of Buttons
+frame2 = Frame(root, width=700, height=200,bg="#303030")
 frame2.pack()
-imagedisplay = Label(frame,image=final_imgs[imgno])
-imagedisplay.pack()
-
-
 
 button_back = Button(frame2, text="<<",command=previous,state=DISABLED,font = fontscript,bg="#0078c2",fg="white",bd=0)
 button_quit = Button(frame2, text="Exit",command=root.quit,font = fontscript,padx = 30,bg="#0078c2",fg="white")
