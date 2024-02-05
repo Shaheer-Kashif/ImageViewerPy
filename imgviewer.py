@@ -1,4 +1,5 @@
 from tkinter import *
+import os
 from PIL import ImageTk, Image
 
 root = Tk()
@@ -9,6 +10,7 @@ fontscript = ("helvetica",15,"bold")
 fontscript2 = ("arial",12)
 max_dimension = 500
 imgno = 0
+directory = "images"
 
 def forward():
     global imagedisplay, button_back,button_forward, imgno,button_forward,button_back,button_quit,status,frame,frame2,fontscript,fontscript2
@@ -47,15 +49,16 @@ def previous():
     button_forward.grid(row=0,column=2)
     status.grid(row=1,column=1)
 
-img1 = Image.open("images/1.jpg")
-img2 = Image.open("images/2.jpg")
-img3 = Image.open("images/3.jpg")
-img4 = Image.open("images/4.jpg")
-img5 = Image.open("images/5.jpg")
-imgs = [img1,img2,img3,img4,img5]
-resized_imgs = list()
-
+#reading all images
+imgs = []
+for filename in os.listdir(directory):
+    if filename.endswith(".jpg") or filename.endswith(".png"): # Adjust extensions as needed
+        image_path = os.path.join(directory, filename)
+        image = Image.open(image_path)
+        imgs.append(image)
+        
 #image resizing
+resized_imgs = list()
 for i in imgs:
     width, height = i.size
     resized_image = i
@@ -70,12 +73,10 @@ for i in imgs:
     resized_imgs.append(resized_image)
 
 #image allocator
-my_img1 = ImageTk.PhotoImage(resized_imgs[0])
-my_img2 = ImageTk.PhotoImage(resized_imgs[1])
-my_img3 = ImageTk.PhotoImage(resized_imgs[2])
-my_img4 = ImageTk.PhotoImage(resized_imgs[3])
-my_img5 = ImageTk.PhotoImage(resized_imgs[4])
-final_imgs = [my_img1, my_img2, my_img3, my_img4,my_img5]
+final_imgs = []
+for i in resized_imgs:
+    my_img = ImageTk.PhotoImage(i)
+    final_imgs.append(my_img)
 
 frame = Frame(root, width=1920, height=1080,bg="#303030",padx=20,pady=20)
 frame.pack()
